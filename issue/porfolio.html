@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parth Barahate - Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="script.js"></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <h1 id="header-title"></h1>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <img src="profile.jpg" alt="Parth Barahate" class="profile-pic" />
+      <p
+        style="
+          font-family: Arial, Helvetica, sans-serif;
+          font-weight: bold;
+          font-size: 25px;
+        "
+      >
+        I am a passionate and dedicated software engineer currently pursuing a
+        Master's in Computer Science at California State University, Los
+        Angeles. With a strong background in front & backend development and
+        expertise in technologies like Node.js, Express.js, Docker, Kubernetes,
+        and cloud platforms like Microsoft Azure and AWS, I specialize in
+        building efficient and scalable software solutions. My focus is on
+        creating RESTful APIs, deploying applications, and leveraging automation
+        to improve system performance. Throughout my academic and professional
+        journey, I have developed a strong technical foundation in programming
+        languages such as Python, C++, JavaScript, and web development tools
+        like React.js and Django. I am always eager to explore new technologies
+        and drive innovation through practical, real-world application
+        development. My hands-on experience has been shaped by internships and
+        projects that have sharpened my problem-solving skills and solidified my
+        commitment to continuous learning. Outside of my technical endeavors, I
+        have engaged in creative activities, such as Theatre and playing Musical
+        Instruments, which have further strengthened my ability to work
+        collaboratively and think outside the box.
+      </p>
+    </section>
+
+    <section id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills-container">
+        <span class="skill">Python</span>
+        <span class="skill">C++</span>
+        <span class="skill">JavaScript</span>
+        <span class="skill">React.js</span>
+        <span class="skill">Node.js</span>
+        <span class="skill">Express.js</span>
+        <span class="skill">Vue.js</span>
+        <span class="skill">Bootstrap</span>
+        <span class="skill">Git</span>
+        <span class="skill">GitHub</span>
+        <span class="skill">MongoDB</span>
+        <span class="skill">SQL</span>
+        <span class="skill">Azure</span>
+        <span class="skill">AWS</span>
+        <span class="skill">Docker</span>
+        <span class="skill">Kubernetes</span>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="experience-container">
+        <!-- <div class="experience-card"></div> -->
+        <div class="experience-card"></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div id="react-projects"></div>
+      <script>
+        function Projects() {
+          const projectList = [
+            {
+              title: "Driver Drowsiness Detection System",
+              image: "drowsiness.jpg",
+              description:
+                "In this project, I developed a driver drowsiness detection system using deep learning models for real-time monitoring. The system employed facial recognition algorithms to detect signs of driver fatigue and alert them to prevent accidents. I implemented the model using Python, leveraging libraries such as OpenCV and TensorFlow for computer vision and machine learning tasks. The system was deployed in a test environment, where it successfully demonstrated its potential to improve road safety. This project enhanced my skills in deep learning, computer vision, and deploying machine learning models in real-world applications.",
+              repo: "https://github.com/parthob12/DrowsinessDetectionSystem",
+            },
+            {
+              title: "Snippet Application",
+              image: "snippet.jpg",
+              description:
+                "I designed and developed a Snippet Application using the MERN stack (MongoDB, Express.js, React.js, Node.js). The platform allows users to securely share and bookmark code snippets. I implemented user authentication and data security features to ensure that user information was protected. Additionally, I integrated automated test cases to maintain the platform’s stability and security. By utilizing APIs for data retrieval and submission, I was able to create a seamless user experience across different platforms. This project helped me refine my skills in full-stack development, focusing on both frontend and backend technologies.",
+              repo: "https://github.com/parthob12/Snippet-Application",
+            },
+            {
+              title: "Credit Score Classification",
+              image: "credit-score.jpg",
+              description:
+                "For this project, I developed a credit score classification system using machine learning algorithms such as Logistic Regression, Decision Trees, and Support Vector Machines. The goal of the system was to predict creditworthiness and assist in informed decision-making for financial institutions. I deployed the model using cloud-based data pipelines for scalability and integrated interpretability features to make the results more transparent and understandable. I designed unit and functional tests to ensure the model’s reliability, helping enhance its application in real-world financial decision-making. This project strengthened my expertise in machine learning and model deployment.",
+              repo: "https://github.com/parthob12/Credit-Score-Classification",
+            },
+            {
+              title: "Online Retail Platform",
+              image: "retail.jpg",
+              description:
+                "I developed a full-featured online retail platform using Python and Django, incorporating advanced security protocols for transactions and integrating payment gateways to ensure a seamless customer experience. The platform allowed for secure and efficient processing of customer orders and transactions. I also implemented automated testing suites to ensure the platform’s reliability and incorporated microservices for optimized scalability and responsiveness. This project helped me improve my skills in full-stack web development, particularly in building secure and scalable e-commerce solutions.",
+              repo: "https://github.com/parthob12/Digital-Commerce-Soln",
+            },
+          ];
+          return React.createElement(
+            "div",
+            { className: "project-grid" },
+            projectList.map((project, index) =>
+              React.createElement(
+                "div",
+                { key: index, className: "project-card" },
+                React.createElement("img", {
+                  src: project.image,
+                  alt: project.title,
+                }),
+                React.createElement("h3", null, project.title),
+                React.createElement("p", null, project.description),
+                React.createElement(
+                  "a",
+                  { href: project.repo, className: "btn" },
+                  "GitHub Repo"
+                )
+              )
+            )
+          );
+        }
+        ReactDOM.render(
+          React.createElement(Projects),
+          document.getElementById("react-projects")
+        );
+      </script>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Email:
+        <a href="mailto:parthbarahate221@gmail.com"
+          >parthbarahate221@gmail.com</a
+        >
+      </p>
+      <p>Phone: +1 (626) 417-9337</p>
+      <p>
+        <a href="https://linkedin.com/in/parthbarahate">LinkedIn</a> |
+        <a href="https://github.com/parthob12">GitHub</a>
+      </p>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Parth Barahate. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>
