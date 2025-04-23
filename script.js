@@ -157,75 +157,17 @@ document.addEventListener("DOMContentLoaded", function () {
   const contactForm = document.getElementById('contact-form');
   
   contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
     const submitBtn = contactForm.querySelector('.submit-btn');
     const originalBtnText = submitBtn.innerHTML;
-    
-    // Validate form inputs
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const subject = document.getElementById('subject').value.trim();
-    const message = document.getElementById('message').value.trim();
-    
-    if (!name || !email || !subject || !message) {
-      showError(submitBtn, 'Please fill in all fields');
-      return;
-    }
-    
-    if (!isValidEmail(email)) {
-      showError(submitBtn, 'Please enter a valid email address');
-      return;
-    }
     
     // Show loading state
     submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
     submitBtn.disabled = true;
     
-    // Get form data
-    const formData = {
-      from_name: name,
-      from_email: email,
-      subject: subject,
-      message: message
-    };
-    
-    // Send email using EmailJS
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
-      .then(function() {
-        showSuccess(submitBtn, 'Message Sent!');
-        contactForm.reset();
-      })
-      .catch(function(error) {
-        console.error('Failed to send email:', error);
-        showError(submitBtn, 'Failed to send message. Please try again later.');
-      });
+    // Reset button after 3 seconds
+    setTimeout(() => {
+      submitBtn.innerHTML = originalBtnText;
+      submitBtn.disabled = false;
+    }, 3000);
   });
-  
-  function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  }
-  
-  function showSuccess(button, message) {
-    button.innerHTML = `${message} <i class="fas fa-check"></i>`;
-    button.style.background = '#4CAF50';
-    
-    setTimeout(() => {
-      button.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
-      button.style.background = '#ffcc00';
-      button.disabled = false;
-    }, 3000);
-  }
-  
-  function showError(button, message) {
-    button.innerHTML = `${message} <i class="fas fa-exclamation-circle"></i>`;
-    button.style.background = '#f44336';
-    
-    setTimeout(() => {
-      button.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
-      button.style.background = '#ffcc00';
-      button.disabled = false;
-    }, 3000);
-  }
 });

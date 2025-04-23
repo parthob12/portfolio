@@ -33,11 +33,9 @@
       defer
       src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"
     ></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
     <script>
       (function() {
-        // Replace 'YOUR_USER_ID' with your actual EmailJS user ID
-        // You can find this in your EmailJS account dashboard
         emailjs.init("YOUR_USER_ID");
       })();
     </script>
@@ -128,7 +126,7 @@
             </div>
           </div>
         </div>
-        <form id="contact-form" class="contact-form">
+        <form id="contact-form" class="contact-form" action="mailto:parthbarahate221@gmail.com" method="post" enctype="text/plain">
           <div class="form-group">
             <label for="name">Your Name</label>
             <input type="text" id="name" name="name" required placeholder="Enter your name">
