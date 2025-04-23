@@ -157,17 +157,32 @@ document.addEventListener("DOMContentLoaded", function () {
   const contactForm = document.getElementById('contact-form');
   
   contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
     const submitBtn = contactForm.querySelector('.submit-btn');
     const originalBtnText = submitBtn.innerHTML;
     
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
     // Show loading state
-    submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+    submitBtn.innerHTML = 'Opening Email... <i class="fas fa-spinner fa-spin"></i>';
     submitBtn.disabled = true;
+    
+    // Create mailto link with pre-filled information
+    const mailtoLink = `mailto:parthbarahate221@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+    
+    // Open default email client
+    window.location.href = mailtoLink;
     
     // Reset button after 3 seconds
     setTimeout(() => {
       submitBtn.innerHTML = originalBtnText;
       submitBtn.disabled = false;
+      contactForm.reset();
     }, 3000);
   });
 });
