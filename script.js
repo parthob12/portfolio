@@ -162,48 +162,70 @@ document.addEventListener("DOMContentLoaded", function () {
     const submitBtn = contactForm.querySelector('.submit-btn');
     const originalBtnText = submitBtn.innerHTML;
     
+    // Validate form inputs
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value.trim();
+    const message = document.getElementById('message').value.trim();
+    
+    if (!name || !email || !subject || !message) {
+      showError(submitBtn, 'Please fill in all fields');
+      return;
+    }
+    
+    if (!isValidEmail(email)) {
+      showError(submitBtn, 'Please enter a valid email address');
+      return;
+    }
+    
     // Show loading state
     submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
     submitBtn.disabled = true;
     
     // Get form data
     const formData = {
-      from_name: document.getElementById('name').value,
-      from_email: document.getElementById('email').value,
-      subject: document.getElementById('subject').value,
-      message: document.getElementById('message').value
+      from_name: name,
+      from_email: email,
+      subject: subject,
+      message: message
     };
     
     // Send email using EmailJS
     emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
       .then(function() {
-        // Show success message
-        submitBtn.innerHTML = 'Message Sent! <i class="fas fa-check"></i>';
-        submitBtn.style.background = '#4CAF50';
-        
-        // Reset form
+        showSuccess(submitBtn, 'Message Sent!');
         contactForm.reset();
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-          submitBtn.innerHTML = originalBtnText;
-          submitBtn.style.background = '#ffcc00';
-          submitBtn.disabled = false;
-        }, 3000);
       })
       .catch(function(error) {
-        // Show error message
-        submitBtn.innerHTML = 'Error! Try Again <i class="fas fa-exclamation-circle"></i>';
-        submitBtn.style.background = '#f44336';
-        
-        // Reset button after 3 seconds
-        setTimeout(() => {
-          submitBtn.innerHTML = originalBtnText;
-          submitBtn.style.background = '#ffcc00';
-          submitBtn.disabled = false;
-        }, 3000);
-        
         console.error('Failed to send email:', error);
+        showError(submitBtn, 'Failed to send message. Please try again later.');
       });
   });
+  
+  function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  }
+  
+  function showSuccess(button, message) {
+    button.innerHTML = `${message} <i class="fas fa-check"></i>`;
+    button.style.background = '#4CAF50';
+    
+    setTimeout(() => {
+      button.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+      button.style.background = '#ffcc00';
+      button.disabled = false;
+    }, 3000);
+  }
+  
+  function showError(button, message) {
+    button.innerHTML = `${message} <i class="fas fa-exclamation-circle"></i>`;
+    button.style.background = '#f44336';
+    
+    setTimeout(() => {
+      button.innerHTML = 'Send Message <i class="fas fa-paper-plane"></i>';
+      button.style.background = '#ffcc00';
+      button.disabled = false;
+    }, 3000);
+  }
 });
