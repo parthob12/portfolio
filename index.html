@@ -28,14 +28,6 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <script defer src="script.js"></script>
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"
-    ></script>
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"
-    ></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
       (function () {
@@ -171,5 +163,39 @@
     <footer>
       <p>&copy; 2025 Parth Barahate. All Rights Reserved.</p>
     </footer>
+
+    <script>
+      sections.forEach((section) => {
+        section.style.opacity = 0;
+        section.style.transform = "translateY(50px)";
+        observer.observe(section);
+      });
+
+      experienceData.forEach((exp) => {
+        const card = document.createElement("div");
+        card.classList.add("experience-card");
+
+        const info = `
+            <div class="experience-info">
+                <h3>${exp.title}</h3>
+                <p>${exp.role}</p>
+                <ul>
+                    ${exp.description
+                      .map((item) => `<li>${item}</li>`)
+                      .join("")}
+                </ul>
+            </div>
+        `;
+        card.innerHTML = info;
+        experienceContainer.appendChild(card);
+      });
+
+      setTimeout(() => {
+        sections.forEach((section) => {
+          section.style.opacity = 1;
+          section.style.transform = "translateY(0)";
+        });
+      }, 2000);
+    </script>
   </body>
 </html>
