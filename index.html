@@ -22,7 +22,7 @@
       sizes="16x16"
       href="./favicon-16x16.png"
     />
-    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="manifest" href="./site.webmanifest" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -165,11 +165,47 @@
     </footer>
 
     <script>
-      sections.forEach((section) => {
-        section.style.opacity = 0;
-        section.style.transform = "translateY(50px)";
-        observer.observe(section);
+      document.addEventListener("DOMContentLoaded", function () {
+        const sections = document.querySelectorAll("section");
+        const observerOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+
+        sections.forEach((section) => {
+          section.style.opacity = 0;
+          section.style.transform = "translateY(50px)";
+          observer.observe(section);
+        });
+
+        setTimeout(() => {
+          sections.forEach((section) => {
+            section.style.opacity = 1;
+            section.style.transform = "translateY(0)";
+          });
+        }, 2000);
       });
+
+      const experienceData = [
+        {
+          title: "ONC",
+          role: "Software Developement Intern (March 2025 - May 2025)",
+          description: [
+            "Developed dynamic frontend interfaces with JavaScript and React.js, optimizing user experience and performance. Worked on backend services using WordPress (PHP) and custom JavaScript to support API integrations and data workflows. Implemented core APIs for authentication, search, and user feed, ensuring secure and efficient data exchange. Integrated SQL databases for user and content management, writing optimized queries for speed and security. Contributed to user authentication flows, including login and session handling, enhancing app security. Collaborated with cross-functional teams in an Agile environment, participating in code reviews, testing, and end-to-end feature delivery.",
+          ],
+        },
+        // ... other experience items ...
+      ];
 
       experienceData.forEach((exp) => {
         const card = document.createElement("div");
@@ -189,13 +225,6 @@
         card.innerHTML = info;
         experienceContainer.appendChild(card);
       });
-
-      setTimeout(() => {
-        sections.forEach((section) => {
-          section.style.opacity = 1;
-          section.style.transform = "translateY(0)";
-        });
-      }, 2000);
     </script>
   </body>
 </html>
