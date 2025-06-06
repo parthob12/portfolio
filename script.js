@@ -13,30 +13,56 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   typeWriter();
 
-  // Smooth scrolling for navigation
-  document.querySelectorAll("nav ul li a").forEach((anchor) => {
-    anchor.addEventListener("click", function (event) {
-      event.preventDefault();
-      const targetId = this.getAttribute("href").substring(1);
-      document.getElementById(targetId).scrollIntoView({
-        behavior: "smooth",
-      });
+  // Smooth scrolling for navigation links
+  document.querySelectorAll("nav a").forEach((anchor) => {
+    anchor.addEventListener("click", function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+      targetSection.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+
+  // Highlight active navigation link based on scroll position
+  window.addEventListener("scroll", () => {
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
+
+    let currentSection = "";
+
+    sections.forEach((section) => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= sectionTop - 60) {
+        currentSection = section.getAttribute("id");
+      }
+    });
+
+    navLinks.forEach((link) => {
+      link.classList.remove("active");
+      if (link.getAttribute("href").substring(1) === currentSection) {
+        link.classList.add("active");
+      }
     });
   });
 
   // Fade-in effect for sections
   const sections = document.querySelectorAll("section");
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = "translateY(0)";
-        }
-      });
-    },
-    { threshold: 0.1 }
-  );
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.15,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        // Once animation is triggered, we can stop observing
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
 
   sections.forEach((section) => {
     section.style.opacity = 0;
@@ -127,11 +153,11 @@ document.addEventListener("DOMContentLoaded", function () {
   projectList.forEach((project) => {
     const card = document.createElement("div");
     card.classList.add("project-card");
-    
+
     // Make the entire card clickable
     card.addEventListener("click", (e) => {
       // Don't trigger card click if clicking the button
-      if (!e.target.classList.contains('btn')) {
+      if (!e.target.classList.contains("btn")) {
         window.open(project.repo, "_blank");
       }
     });
@@ -154,35 +180,67 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Contact form handling
-  const contactForm = document.getElementById('contact-form');
-  
-  contactForm.addEventListener('submit', function(e) {
+  const contactForm = document.getElementById("contact-form");
+
+  contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    
-    const submitBtn = contactForm.querySelector('.submit-btn');
+
+    const submitBtn = contactForm.querySelector(".submit-btn");
     const originalBtnText = submitBtn.innerHTML;
-    
+
     // Get form values
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const subject = document.getElementById('subject').value;
-    const message = document.getElementById('message').value;
-    
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("message").value;
+
     // Show loading state
-    submitBtn.innerHTML = 'Opening Email... <i class="fas fa-spinner fa-spin"></i>';
+    submitBtn.innerHTML =
+      'Opening Email... <i class="fas fa-spinner fa-spin"></i>';
     submitBtn.disabled = true;
-    
+
     // Create mailto link with pre-filled information
-    const mailtoLink = `mailto:parthbarahate221@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
-    
+    const mailtoLink = `mailto:parthbarahate221@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${message}`
+    )}`;
+
     // Open default email client
     window.location.href = mailtoLink;
-    
+
     // Reset button after 3 seconds
     setTimeout(() => {
       submitBtn.innerHTML = originalBtnText;
       submitBtn.disabled = false;
       contactForm.reset();
     }, 3000);
+  });
+
+  // Add animation class to section titles
+  document.querySelectorAll("section h2").forEach((title) => {
+    title.classList.add("animate-title");
+  });
+
+  // Create Intersection Observer for section titles
+  const titleObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          // Once animation is triggered, we can stop observing
+          titleObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.2, // Trigger when 20% of the element is visible
+      rootMargin: "0px",
+    }
+  );
+
+  // Start observing all section titles
+  document.querySelectorAll("section h2").forEach((title) => {
+    titleObserver.observe(title);
   });
 });
