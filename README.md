@@ -1,6 +1,10 @@
 # Parth Barahate - Portfolio
 
-A modern, responsive portfolio website built with React and Vite, showcasing my skills, experience, and projects.
+A modern, responsive portfolio website built with React and Vite, featuring smooth animations and a professional design.
+
+## 🚀 Live Site
+
+Visit my portfolio at: [https://parthob12.github.io/portfolio/](https://parthob12.github.io/portfolio/)
 
 ## Features
 
@@ -20,18 +24,39 @@ A modern, responsive portfolio website built with React and Vite, showcasing my 
 - CSS3 with modern features
 - EmailJS for contact form
 
-## Getting Started
+## 🚀 Deployment
+
+This portfolio is automatically deployed to GitHub Pages using GitHub Actions. Any push to the main branch will trigger a new deployment.
+
+### Manual Deployment
+
+To deploy manually, run:
+
+```bash
+./deploy.sh
+```
+
+Or manually:
+
+```bash
+npm run build
+git add .
+git commit -m "Update portfolio"
+git push origin main
+```
+
+## 🏃‍♂️ Local Development
 
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/portfolio.git
+git clone https://github.com/parthob12/portfolio.git
+cd portfolio
 ```
 
 2. Install dependencies:
 
 ```bash
-cd portfolio
 npm install
 ```
 
@@ -45,6 +70,12 @@ npm run dev
 
 ```bash
 npm run build
+```
+
+5. Preview production build:
+
+```bash
+npm run preview
 ```
 
 ## Project Structure
