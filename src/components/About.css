@@ -1,0 +1,142 @@
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+.about-content {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .about-content {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 3rem;
+    text-align: left;
+  }
+  
+  .profile-pic {
+    flex-shrink: 0;
+  }
+  
+  .about-description {
+    flex: 1;
+    text-align: left;
+    padding: 0;
+  }
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #2a5298;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.profile-name {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #ffcc00;
+  margin: 0;
+  text-align: center;
+}
+
+.profile-degree {
+  font-size: 1.1em;
+  color: #e0e0e0;
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.profile-dates {
+  font-size: 1em;
+  color: #b0b0b0;
+  margin: 0;
+  text-align: center;
+  font-style: italic;
+}
+
+.about-description {
+  font-size: 1.2em;
+  line-height: 1.6;
+  text-align: justify;
+  color: #e0e0e0;
+  margin: 0;
+  padding: 0 2rem;
+  max-width: 1000px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    padding: 0 1rem;
+  }
+
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+  }
+
+  .profile-name {
+    font-size: 1.5em;
+  }
+
+  .profile-degree {
+    font-size: 1em;
+  }
+
+  .profile-dates {
+    font-size: 0.9em;
+  }
+
+  .about-description {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 1rem;
+  }
+
+  .profile-pic {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-name {
+    font-size: 1.3em;
+  }
+
+  .profile-degree {
+    font-size: 0.9em;
+  }
+
+  .profile-dates {
+    font-size: 0.8em;
+  }
+
+  .about-description {
+    font-size: 1em;
+    padding: 0;
+  }
+} 

@@ -1,0 +1,143 @@
+.projects-section {
+  padding: 2rem;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.project-card {
+  position: relative;
+  background: #1a1a1a;
+  color: #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  height: auto;
+  min-height: 380px;
+  border: 1px solid #2d2d2d;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  border-color: rgba(255, 204, 0, 0.3);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.project-card:hover img {
+  transform: scale(1.05);
+}
+
+.project-info {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 200px;
+}
+
+.project-info h3 {
+  font-size: 1.4em;
+  margin: 0 0 1rem 0;
+  color: #ffcc00;
+  font-weight: 600;
+}
+
+.project-info p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #e0e0e0;
+  margin: 0 0 1.2rem 0;
+  flex-grow: 1;
+  overflow: visible;
+}
+
+.project-info .btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-align: center;
+  font-weight: 500;
+}
+
+.project-info .btn:hover {
+  background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1200px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+    max-width: 800px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 1rem;
+  }
+
+  .project-card {
+    height: auto;
+    min-height: 380px;
+  }
+
+  .project-info {
+    height: auto;
+    min-height: 200px;
+  }
+
+  .project-info h3 {
+    font-size: 1.3em;
+  }
+
+  .project-info p {
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-grid {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+
+  .project-card {
+    min-height: 350px;
+  }
+
+  .project-info {
+    padding: 1rem;
+    min-height: 170px;
+  }
+
+  .project-info h3 {
+    font-size: 1.2em;
+  }
+
+  .project-info p {
+    font-size: 0.9em;
+  }
+
+  .project-info .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9em;
+  }
+} 
