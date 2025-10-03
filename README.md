@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with React and Vite, featuring smooth animations and a professional design.
 
-## 🚀 Live Site
+## Live Site
 
 Visit my portfolio at: [https://parthob12.github.io/portfolio/](https://parthob12.github.io/portfolio/)
 
@@ -24,7 +24,7 @@ Visit my portfolio at: [https://parthob12.github.io/portfolio/](https://parthob1
 - CSS3 with modern features
 - EmailJS for contact form
 
-## 🚀 Deployment
+## Deployment
 
 This portfolio is automatically deployed to GitHub Pages using GitHub Actions. Any push to the main branch will trigger a new deployment.
 
@@ -45,7 +45,7 @@ git commit -m "Update portfolio"
 git push origin main
 ```
 
-## 🏃‍♂️ Local Development
+## Local Development
 
 1. Clone the repository:
 
